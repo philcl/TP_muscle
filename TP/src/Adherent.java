@@ -1,5 +1,6 @@
 /**
  * Classe Adherent.
+ * Une {@link Categorie} de {@link Client}.
  */
 public class Adherent extends Categorie {
 
