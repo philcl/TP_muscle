@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Classe Client.
  */
@@ -6,6 +8,7 @@ public class Client {
     private String nom, mail, motDePasse;
     private Categorie categorie;
     private Panier panier;
+    private ArrayList<CarteDeFidelite> sesCartes;
 
     public Client (){
         this("","","", new ClientSimple());
@@ -17,26 +20,15 @@ public class Client {
         this.motDePasse = motDePasse;
         this.categorie = categorie;
         this.panier = new Panier();
+        this.sesCartes = new ArrayList<>();
     }
 
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
     public String getMail() {
         return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getMotDePasse() {
-        return motDePasse;
     }
 
     public Categorie getCategorie() {
@@ -45,6 +37,20 @@ public class Client {
 
     public Panier getPanier(){
         return this.panier;
+    }
+
+    public ArrayList<CarteDeFidelite> getSesCartes(){
+        return this.sesCartes;
+    }
+
+    public void ajouterUneCarte(CarteDeFidelite carteDeFidelite){
+        //todo retirer le instanceof
+        if (categorie instanceof Adherent){
+            sesCartes.add(carteDeFidelite);
+        }
+        else{
+            System.out.println("Ce client n'est pas adhérent.");
+        }
     }
 
     public void changerMotDePasse(String ancienMotDePasse, String nouveauMotDePasse){
@@ -64,6 +70,10 @@ public class Client {
 
     public void deconnexion(){
         categorie = categorie.deconnexion();
+    }
+
+    public void payer(){
+        //todo on calcule le prix du panier puis on applique le rabais de la categorie
     }
 
 }

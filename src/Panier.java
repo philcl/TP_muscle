@@ -15,7 +15,7 @@ public class Panier {
         return listeDesProduits;
     }
 
-    //todo améliorer pour prendre les offres en compte.
+    //todo améliorer pour prendre les offres en compte. prendre aussi les reducs de membre du personnel et des cartes de fidelite
     //Doit regarder les réducs des produits de façon unitaire puis liste les packs puis applique les reducs de pack.
     /**
      * Calcule le prix total du {@link Panier}.
