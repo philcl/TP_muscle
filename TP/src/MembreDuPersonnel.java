@@ -11,7 +11,10 @@ public class MembreDuPersonnel extends Categorie {
     /**
      * Change un {@link MembreDuPersonnel} en {@link ClientSimple}.
      */
-    public void deconnexion(){
-
+    public Categorie deconnexion(){
+        return new ClientSimple();
+    }
+    public Categorie connexion(){
+        return this;
     }
 }

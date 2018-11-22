@@ -11,7 +11,10 @@ public class ClientSimple extends Categorie {
     /**
      * Change un {@link ClientSimple} en {@link Adherent} ou en {@link MembreDuPersonnel}.
      */
-    public void connexion(){
-
+    public Categorie connexion(){
+        return new ClientSimple();
+    }
+    public Categorie deconnexion(){
+        return this;
     }
 }

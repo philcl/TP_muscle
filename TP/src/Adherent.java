@@ -11,7 +11,10 @@ public class Adherent extends Categorie {
     /**
      * Change un {@link Adherent} en {@link ClientSimple}.
      */
-    public void deconnexion(){
-
+    public Categorie deconnexion(){
+        return new ClientSimple();
+    }
+    public Categorie connexion(){
+        return this;
     }
 }

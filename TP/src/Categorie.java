@@ -2,8 +2,8 @@
  * Classe abstraite {@link Categorie}.
  * Représente les différentes catégories de {@link Client}.
  */
-public abstract class Categorie extends Client {
+public abstract class Categorie {
 
-    public void connexion(){}
-    public void deconnexion(){}
+    public abstract Categorie connexion();
+    public abstract Categorie deconnexion();
 }
