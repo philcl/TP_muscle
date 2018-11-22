@@ -28,4 +28,23 @@ public class Panier {
         }
         return prix;
     }
+
+    public void ajouterListeAuPanier(ArrayList<Produit> listeDeProduits){
+        for(Produit produit : listeDeProduits){
+            this.ajouterAuPanier(produit);
+        }
+    }
+
+    public void ajouterAuPanier(Produit produit){
+        listeDesProduits.add(produit);
+    }
+
+    public void retirerDuPanier(Produit produit){
+        if(listeDesProduits.contains(produit)) {
+            listeDesProduits.remove(produit);
+        }
+        else{
+            System.out.println("Le produit n'est pas dans la liste.");
+        }
+    }
 }
