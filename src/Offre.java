@@ -1,5 +1,3 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -7,9 +5,9 @@ import java.util.ArrayList;
  */
 public class Offre {
 
-    private static int identifiantCompteur;
+    private static int identifiantCompteur = 0;
     private float taux;
-    private ArrayList<? extends Produit> produits;
+    private ArrayList<? extends Produit> sesProduits;
     private int identifiant;
     private Superviseur s;
 
@@ -17,18 +15,17 @@ public class Offre {
         identifiant = identifiantCompteur;
         identifiantCompteur++;
         taux = 0;
+        sesProduits = new ArrayList<>();
         s = sup;
         s.notify(this);
     }
 
     public Offre(float taux,ArrayList<? extends Produit> produits, Superviseur sup) {
-        super();
-        s = sup;
-        s.notify(this);
+        this(sup);
         this.taux = taux;
     }
 
-    public ArrayList<? extends Produit> getProduits() {
-        return produits;
+    public ArrayList<? extends Produit> getSesProduits() {
+        return sesProduits;
     }
 }

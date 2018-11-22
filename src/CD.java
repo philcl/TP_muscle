@@ -7,7 +7,7 @@ public class CD extends Produit {
     public CD(){
         super();
     }
-    public CD(int prix, String produit){
-        super(prix, produit);
+    public CD(int prix, String produit, int pointsFidelite){
+        super(prix, produit, pointsFidelite);
     }
 }

@@ -7,10 +7,10 @@ public class ObservateurOffre  extends Superviseur{
     }
 
     public void notify(Offre o) {
-        ArrayList<? extends Produit> sesProduits = o.getProduits();
+        ArrayList<? extends Produit> sesProduits = o.getSesProduits();
 
         for (Produit p: sesProduits) {
-            
+            p.sesOffres.add(o);
         }
     }
 }
