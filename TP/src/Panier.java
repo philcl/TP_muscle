@@ -16,7 +16,7 @@ public class Panier {
     }
 
     //todo améliorer pour prendre les offres en compte.
-
+    //Doit regarder les réducs des produits de façon unitaire puis liste les packs puis applique les reducs de pack.
     /**
      * Calcule le prix total du {@link Panier}.
      * @return prix du panier.
