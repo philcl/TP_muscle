@@ -1,11 +1,12 @@
+import java.util.ArrayList;
+
 /**
  * Classe Test, utilisée pour tester les classes.
  */
 public class Test {
 
 
-    public static int main(){
+    public static void main(String[] args){
 
-        return 0;
     }
 }
