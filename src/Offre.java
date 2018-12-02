@@ -25,7 +25,7 @@ public class Offre {
         this.taux = taux;
     }
 
-    public void setProduits(Produit prod) {
+    public void addProduits(Produit prod) {
         sesProduits.add(prod);
     }
 

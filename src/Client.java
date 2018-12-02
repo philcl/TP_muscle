@@ -23,6 +23,14 @@ public class Client {
         this.sesCartes = new ArrayList<>();
     }
 
+    public Client (String nom, String mail, String motDePasse){
+        this.nom = nom;
+        this.mail = mail;
+        this.motDePasse = motDePasse;
+        this.panier = new Panier();
+        this.sesCartes = new ArrayList<>();
+    }
+
     public String getNom() {
         return nom;
     }

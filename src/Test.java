@@ -14,20 +14,30 @@ public class Test {
         ObservateurOffre supOffre1 = new ObservateurOffre(), supOffre2 = new ObservateurOffre(), supOffre3 = new ObservateurOffre();
         Offre Offre1 = new Offre(supOffre1), Offre2 = new Offre(supOffre2), Offre3 = new Offre(supOffre3);
 
+        BaseDeDonnee bd = BaseDeDonnee.getInstance();
+
         Client Client1 = new Client("Felix", "felix.jacquemin@u-psud.fr", "azerty", Adherent.getInstance());
         Client Client2 = new Client("Philippe", "philippe.claude@u-psud.fr", "azerty", ClientSimple.getInstance());
         Client Client3 = new Client("Maissa", "maissa.khamis@u-psud.fr", "azerty", MembreDuPersonnel.getInstance());
 
-        Offre1.setProduits(CD1);
+        Client Client11 = new Client("Felix", "felix.jacquemin@u-psud.fr", "azerty");
+        Client Client21 = new Client("Philippe", "philippe.claude@u-psud.fr", "azerty");
+        Client Client31 = new Client("Maissa", "maissa.khamis@u-psud.fr", "azerty");
 
-        Offre2.setProduits(CD1);
-        Offre2.setProduits(DVD1);
-        Offre2.setProduits(Livre1);
+        Offre1.addProduits(CD1);
 
-        Offre3.setProduits(CD1);
-        Offre3.setProduits(CD2);
-        Offre3.setProduits(DVD3);
-        Offre3.setProduits(DVD2);
+        Offre2.addProduits(CD1);
+        Offre2.addProduits(DVD1);
+        Offre2.addProduits(Livre1);
+
+        Offre3.addProduits(CD1);
+        Offre3.addProduits(CD2);
+        Offre3.addProduits(DVD3);
+        Offre3.addProduits(DVD2);
+
+        bd.addClient(Client1);
+        bd.addClient(Client2);
+        bd.addClient(Client3);
 
         //todo creer les paniers et gerer les prix
     }
