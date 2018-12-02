@@ -18,9 +18,9 @@ public class BaseDeDonnee {
 
     public void addClient(Client c){ sesClients.add(c); }
 
-    public Categorie compareClient(Client c) {
+    public Categorie compareClient(String mail, String password) {
         for (Client clients : sesClients) {
-            if (clients.getMail() == c.getMail()) {
+            if ((clients.getMail().equals(mail)) && (clients.checkPassword(password))) {
                 return clients.getCategorie();
             }
         }
