@@ -8,14 +8,23 @@ public class MembreDuPersonnel extends Categorie {
 
     }
 
+    private static MembreDuPersonnel instance = null;
+
+    public static MembreDuPersonnel getInstance(){
+        if(instance == null){
+            instance = new MembreDuPersonnel();
+        }
+        return instance;
+    }
+
     /**
      * Change un {@link MembreDuPersonnel} en {@link ClientSimple}.
      */
     public Categorie deconnexion(){
-        return new ClientSimple();
+        return ClientSimple.getInstance();
     }
     public Categorie connexion(){
-        return this;
+        return MembreDuPersonnel.getInstance();
     }
 
     public double getRabais(Client client){

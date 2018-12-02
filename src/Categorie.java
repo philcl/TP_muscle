@@ -7,4 +7,5 @@ public abstract class Categorie {
     public abstract Categorie connexion();
     public abstract Categorie deconnexion();
     public abstract double getRabais(Client client);
+    //public abstract void ajoutPoints(Client client, int points);
 }

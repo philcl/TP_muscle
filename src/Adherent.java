@@ -4,18 +4,25 @@
  */
 public class Adherent extends Categorie {
 
-    public Adherent(){
+    public Adherent(){}
 
+    private static Adherent instance = null;
+
+    public static Adherent getInstance(){
+        if(instance == null){
+            instance = new Adherent();
+        }
+        return instance;
     }
 
     /**
      * Change un {@link Adherent} en {@link ClientSimple}.
      */
     public Categorie deconnexion(){
-        return new ClientSimple();
+        return ClientSimple.getInstance();
     }
     public Categorie connexion(){
-        return this;
+        return Adherent.getInstance();
     }
 
     public double getRabais(Client client){
@@ -31,4 +38,5 @@ public class Adherent extends Categorie {
 
         return rabais;
     }
+
 }

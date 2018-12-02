@@ -16,7 +16,11 @@ public class Panier {
     }
 
     //todo améliorer pour prendre les offres en compte.
-    //Doit regarder les réducs des produits de façon unitaire puis liste les packs puis applique les reducs de pack.
+    /*Parcours de la liste de produit pour lister les offres (suppression des doublons a l'aide de l'identifiant)
+    * Recherche des packs de produits et suppression des offres incompletes
+    * Calcul du prix pour chaque produit pour chaque offre (pas de packs) + choix de l'offre la plus avantageuse en cas d'offre double
+    * Calcul du prix total de chaque pack et comparaison avec la somme des produits unitaire puis choix de l'offre la plus avantageuse
+    * Calcul d prix final*/
     /**
      * Calcule le prix total du {@link Panier}.
      * @return prix du panier.
@@ -38,6 +42,7 @@ public class Panier {
 
     public void ajouterAuPanier(Produit produit){
         listeDesProduits.add(produit);
+
     }
 
 }
