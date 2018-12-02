@@ -7,7 +7,7 @@ public class Livre extends Produit{
     public Livre(){
         super();
     }
-    public Livre(int prix, String produit, int pointsFidelite){
+    public Livre(double prix, String produit, int pointsFidelite){
         super(prix, produit, pointsFidelite);
     }
 }
