@@ -5,5 +5,4 @@
 public abstract class Categorie {
 
     public abstract double getRabais(Client client);
-    //public abstract void ajoutPoints(Client client, int points);
 }

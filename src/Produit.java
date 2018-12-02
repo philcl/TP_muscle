@@ -26,4 +26,5 @@ public abstract class Produit {
     public String getTitre(){
         return titre;
     }
+    public int getPointsFidelite(){ return pointsFidelite; }
 }
