@@ -61,21 +61,23 @@ public class Client {
             System.out.println("Mot de passe erroné\n");
         }
     }
-//todo expliquer pourquoi c'est fait comme ça
+
+    public boolean checkPassword(String motDePasse){
+        return this.motDePasse.equals(motDePasse);
+    }
+
     public void connexion(String nom, String mail, String motDePasse){
-        if(this.mail.equals(mail) && this.motDePasse.equals(motDePasse)){
-            this.categorie = categorie.connexion(); //si bd pour check -> this.categorie = new <Categorie lue dans la BD>.connexion();
-        }
+        this.categorie = BaseDeDonnee.getInstance().compareClient(mail, motDePasse);
     }
 
     public void deconnexion(){
-        categorie = categorie.deconnexion();
+        categorie = ClientSimple.getInstance();
     }
 
     public double payer(){
+        double res = panier.calculDuPrix(this);
         panier.getListeDesProduits().clear();
-        //todo on calcule le prix du panier puis on applique le rabais de la categorie
-        return panier.calculDuPrix(this);
+        return res;
     }
 
 }

@@ -17,16 +17,6 @@ public class MembreDuPersonnel extends Categorie {
         return instance;
     }
 
-    /**
-     * Change un {@link MembreDuPersonnel} en {@link ClientSimple}.
-     */
-    public Categorie deconnexion(){
-        return ClientSimple.getInstance();
-    }
-    public Categorie connexion(){
-        return MembreDuPersonnel.getInstance();
-    }
-
     public double getRabais(Client client){
         return 0.05;
     }

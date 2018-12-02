@@ -15,16 +15,6 @@ public class Adherent extends Categorie {
         return instance;
     }
 
-    /**
-     * Change un {@link Adherent} en {@link ClientSimple}.
-     */
-    public Categorie deconnexion(){
-        return ClientSimple.getInstance();
-    }
-    public Categorie connexion(){
-        return Adherent.getInstance();
-    }
-
     public double getRabais(Client client){
         double rabais = client.getSesCartes().get(0).getRabais();
         CarteDeFidelite c = client.getSesCartes().get(0);
