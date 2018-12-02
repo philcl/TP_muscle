@@ -11,7 +11,7 @@ public class Client {
     private ArrayList<CarteDeFidelite> sesCartes;
 
     public Client (){
-        this("","","", new ClientSimple());
+        this("","","", ClientSimple.getInstance());
     }
 
     public Client (String nom, String mail, String motDePasse, Categorie categorie){
