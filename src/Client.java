@@ -44,8 +44,8 @@ public class Client {
     }
 
     public void ajouterUneCarte(CarteDeFidelite carteDeFidelite){
-        //todo retirer le instanceof (mettre une Exception)
-        if (categorie instanceof Adherent){
+        //todo(mettre une Exception) et redef equals dans categorie
+        if (categorie == Adherent.getInstance()){
             sesCartes.add(carteDeFidelite);
         }
         else{
