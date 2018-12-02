@@ -28,6 +28,7 @@ public class Client {
         this.mail = mail;
         this.motDePasse = motDePasse;
         this.panier = new Panier();
+        this.categorie = ClientSimple.getInstance();
         this.sesCartes = new ArrayList<>();
     }
 
