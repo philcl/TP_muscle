@@ -42,7 +42,6 @@ public class Panier {
 
     public void ajouterAuPanier(Produit produit){
         listeDesProduits.add(produit);
-
     }
 
 }

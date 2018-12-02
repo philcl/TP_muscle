@@ -17,4 +17,13 @@ public class BaseDeDonnee {
     }
 
     public void addClient(Client c){ sesClients.add(c); }
+
+    public Categorie compareClient(Client c) {
+        for (Client clients : sesClients) {
+            if (clients.getMail() == c.getMail()) {
+                return clients.getCategorie();
+            }
+        }
+        return ClientSimple.getInstance();
+    }
 }

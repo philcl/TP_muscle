@@ -23,15 +23,6 @@ public class Client {
         this.sesCartes = new ArrayList<>();
     }
 
-    public Client (String nom, String mail, String motDePasse){
-        this.nom = nom;
-        this.mail = mail;
-        this.motDePasse = motDePasse;
-        this.panier = new Panier();
-        this.categorie = ClientSimple.getInstance();
-        this.sesCartes = new ArrayList<>();
-    }
-
     public String getNom() {
         return nom;
     }
@@ -53,7 +44,7 @@ public class Client {
     }
 
     public void ajouterUneCarte(CarteDeFidelite carteDeFidelite){
-        //todo retirer le instanceof
+        //todo retirer le instanceof (mettre une Exception)
         if (categorie instanceof Adherent){
             sesCartes.add(carteDeFidelite);
         }
@@ -71,7 +62,7 @@ public class Client {
         }
     }
 //todo expliquer pourquoi c'est fait comme ça
-    public void connexion(String mail, String motDePasse, Categorie categorie){
+    public void connexion(String nom, String mail, String motDePasse){
         if(this.mail.equals(mail) && this.motDePasse.equals(motDePasse)){
             this.categorie = categorie.connexion(); //si bd pour check -> this.categorie = new <Categorie lue dans la BD>.connexion();
         }
@@ -81,8 +72,10 @@ public class Client {
         categorie = categorie.deconnexion();
     }
 
-    public void payer(){
+    public double payer(){
+        panier.getListeDesProduits().clear();
         //todo on calcule le prix du panier puis on applique le rabais de la categorie
+        return panier.calculDuPrix(this);
     }
 
 }

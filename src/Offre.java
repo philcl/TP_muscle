@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Offre {
 
     private static int identifiantCompteur = 0;
-    private float taux;
+    private double taux;
     private ArrayList<Produit> sesProduits;
     private int identifiant;
     private Superviseur s;
@@ -20,7 +20,7 @@ public class Offre {
         s.notify(this);
     }
 
-    public Offre(float taux,ArrayList<? extends Produit> produits, Superviseur sup) {
+    public Offre(double taux, Superviseur sup) {
         this(sup);
         this.taux = taux;
     }
@@ -31,5 +31,13 @@ public class Offre {
 
     public ArrayList<? extends Produit> getSesProduits() {
         return sesProduits;
+    }
+
+    public int getIdentifiant() {
+        return identifiant;
+    }
+
+    public double getTaux() {
+        return taux;
     }
 }
