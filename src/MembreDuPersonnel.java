@@ -17,4 +17,8 @@ public class MembreDuPersonnel extends Categorie {
     public Categorie connexion(){
         return this;
     }
+
+    public double getRabais(Client client){
+        return 0.05;
+    }
 }

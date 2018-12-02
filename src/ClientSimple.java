@@ -17,4 +17,8 @@ public class ClientSimple extends Categorie {
     public Categorie deconnexion(){
         return this;
     }
+
+    public double getRabais(Client client){
+        return 0;
+    }
 }

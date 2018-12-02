@@ -15,18 +15,19 @@ public class Panier {
         return listeDesProduits;
     }
 
-    //todo améliorer pour prendre les offres en compte. prendre aussi les reducs de membre du personnel et des cartes de fidelite
+    //todo améliorer pour prendre les offres en compte.
     //Doit regarder les réducs des produits de façon unitaire puis liste les packs puis applique les reducs de pack.
     /**
      * Calcule le prix total du {@link Panier}.
      * @return prix du panier.
      */
-    public float calculDuPrix(){
+    public double calculDuPrix(Client client){
         float prix = 0;
         for (Produit produit : listeDesProduits){
             prix += produit.getPrix();
         }
-        return prix;
+        //calcul du rabais en fonction de la catégorie.
+        return prix - prix * client.getCategorie().getRabais(client);
     }
 
     public void ajouterListeAuPanier(ArrayList<Produit> listeDeProduits){
@@ -39,12 +40,4 @@ public class Panier {
         listeDesProduits.add(produit);
     }
 
-    public void retirerDuPanier(Produit produit){
-        if(listeDesProduits.contains(produit)) {
-            listeDesProduits.remove(produit);
-        }
-        else{
-            System.out.println("Le produit n'est pas dans la liste.");
-        }
-    }
 }

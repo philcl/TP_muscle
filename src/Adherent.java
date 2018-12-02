@@ -17,4 +17,18 @@ public class Adherent extends Categorie {
     public Categorie connexion(){
         return this;
     }
+
+    public double getRabais(Client client){
+        double rabais = client.getSesCartes().get(0).getRabais();
+        CarteDeFidelite c = client.getSesCartes().get(0);
+        for(CarteDeFidelite carte : client.getSesCartes()){
+            if (carte.getRabais() > rabais){
+                rabais = carte.getRabais();
+                c = carte;
+            }
+        }
+        c.reinitialisePoints();
+
+        return rabais;
+    }
 }
