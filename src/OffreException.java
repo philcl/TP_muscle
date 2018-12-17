@@ -1,6 +1,6 @@
-public class OffreException {
+public class OffreException extends Exception{
     public OffreException()
     {
-        System.out.println("Erreur pourcentage de l'offre");
+        System.err.println("Erreur pourcentage de l'offre");
     }
 }

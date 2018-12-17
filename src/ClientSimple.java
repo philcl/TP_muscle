@@ -20,4 +20,12 @@ public class ClientSimple extends Categorie {
     public double getRabais(Client client){
         return 0;
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        return(this == o);
+    }
 }
+
+

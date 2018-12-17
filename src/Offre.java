@@ -9,20 +9,21 @@ public class Offre {
     private double taux;
     private ArrayList<Produit> sesProduits;
     private int identifiant;
-    private Superviseur s;
+    private ObservateurOffre obs;
 
-    public Offre(Superviseur sup){
+    public Offre(ObservateurOffre s){
         identifiant = identifiantCompteur;
         identifiantCompteur++;
         taux = 0;
         sesProduits = new ArrayList<>();
-        s = sup;
-        s.notify(this);
+        obs = s;
+        obs.notify(this);
     }
 
-    public Offre(double taux, Superviseur sup) {
+    public Offre(double taux, ObservateurOffre sup) throws OffreException {
         this(sup);
-        this.taux = taux;
+        if(taux >= 1) throw new OffreException();
+        else this.taux = taux;
     }
 
     public void addProduits(Produit prod) {

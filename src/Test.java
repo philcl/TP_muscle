@@ -12,7 +12,23 @@ public class Test {
         Livre Livre1 = new Livre(50, "Harry Potter 1", 7);
 
         ObservateurOffre supOffre1 = new ObservateurOffre(), supOffre2 = new ObservateurOffre(), supOffre3 = new ObservateurOffre();
-        Offre Offre1 = new Offre(0.5, supOffre1), Offre2 = new Offre(0.2, supOffre2), Offre3 = new Offre(0.1, supOffre3);
+        try {
+            Offre Offre1 = new Offre(0.5, supOffre1), Offre2 = new Offre(0.2, supOffre2), Offre3 = new Offre(0.1, supOffre3);
+
+            Offre1.addProduits(CD1);
+
+            Offre2.addProduits(CD1);
+            Offre2.addProduits(DVD1);
+            Offre2.addProduits(Livre1);
+
+            Offre3.addProduits(CD1);
+            Offre3.addProduits(CD2);
+            Offre3.addProduits(DVD3);
+            Offre3.addProduits(DVD2);
+        }
+        catch(OffreException e) {
+            e.getMessage();
+        }
 
         BaseDeDonnee bd = BaseDeDonnee.getInstance();
 
@@ -23,17 +39,6 @@ public class Test {
         Client Client1base = new Client();
         Client Client2base = new Client();
         Client Client3base = new Client();
-
-        Offre1.addProduits(CD1);
-
-        Offre2.addProduits(CD1);
-        Offre2.addProduits(DVD1);
-        Offre2.addProduits(Livre1);
-
-        Offre3.addProduits(CD1);
-        Offre3.addProduits(CD2);
-        Offre3.addProduits(DVD3);
-        Offre3.addProduits(DVD2);
 
         bd.addClient(Client1);
         bd.addClient(Client2);

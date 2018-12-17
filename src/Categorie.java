@@ -5,4 +5,7 @@
 public abstract class Categorie {
 
     public abstract double getRabais(Client client);
+
+    @Override
+    public abstract boolean equals(Object o);
 }

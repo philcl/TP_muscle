@@ -20,4 +20,10 @@ public class MembreDuPersonnel extends Categorie {
     public double getRabais(Client client){
         return 0.05;
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        return(this == o);
+    }
 }

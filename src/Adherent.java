@@ -29,4 +29,10 @@ public class Adherent extends Categorie {
         return rabais;
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        return(this == o);
+    }
+
 }

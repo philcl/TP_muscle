@@ -67,7 +67,12 @@ public class Client {
     }
 
     public void connexion(String nom, String mail, String motDePasse){
-        this.categorie = BaseDeDonnee.getInstance().compareClient(mail, motDePasse);
+        try {
+            this.categorie = BaseDeDonnee.getInstance().compareClient(mail, motDePasse);
+        }
+        catch (CategorieException e) {
+            e.getMessage();
+        }
     }
 
     public void deconnexion(){

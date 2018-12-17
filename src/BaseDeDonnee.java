@@ -18,12 +18,12 @@ public class BaseDeDonnee {
 
     public void addClient(Client c){ sesClients.add(c); }
 
-    public Categorie compareClient(String mail, String password) {
+    public Categorie compareClient(String mail, String password) throws CategorieException {
         for (Client clients : sesClients) {
             if ((clients.getMail().equals(mail)) && (clients.checkPassword(password))) {
                 return clients.getCategorie();
             }
         }
-        return ClientSimple.getInstance();
+        throw new CategorieException();
     }
 }

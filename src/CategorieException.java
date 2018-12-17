@@ -1,6 +1,6 @@
-public class CategorieException {
+public class CategorieException extends Exception{
     public CategorieException()
     {
-        System.out.println("Erreur client");
+        System.err.println("Erreur client");
     }
 }
