@@ -5,6 +5,7 @@ import java.util.ArrayList;
  */
 public class Offre {
 
+    //todo identifiant plus utilise, a voir si il est utile
     private static int identifiantCompteur = 0;
     private double taux;
     private ArrayList<Produit> sesProduits;
@@ -40,5 +41,16 @@ public class Offre {
 
     public double getTaux() {
         return taux;
+    }
+
+    public double argentGagne() {
+        double res = 0;
+        if(!sesProduits.isEmpty()){
+            for(Produit produit : sesProduits){
+                res += produit.getPrix() * this.taux;
+            }
+            return res;
+        }
+        else return 0;
     }
 }

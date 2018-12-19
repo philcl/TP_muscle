@@ -27,4 +27,7 @@ public abstract class Produit {
         return titre;
     }
     public int getPointsFidelite(){ return pointsFidelite; }
+    public ArrayList<Offre> getOffres(){
+        return sesOffres;
+    }
 }
