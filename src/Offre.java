@@ -18,17 +18,20 @@ public class Offre {
         taux = 0;
         sesProduits = new ArrayList<>();
         obs = s;
-        obs.notify(this);
     }
 
     public Offre(double taux, ObservateurOffre sup) throws OffreException {
-        this(sup);
         if(taux >= 1) throw new OffreException();
         else this.taux = taux;
+        identifiant = identifiantCompteur;
+        identifiantCompteur++;
+        sesProduits = new ArrayList<>();
+        obs = sup;
     }
 
     public void addProduits(Produit prod) {
         sesProduits.add(prod);
+        obs.notify(this);
     }
 
     public ArrayList<? extends Produit> getSesProduits() {

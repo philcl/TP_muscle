@@ -27,6 +27,7 @@ public class Test {
             Offre3.addProduits(DVD2);
         }
         catch(OffreException e) {
+            System.out.println("dans except offre");
             e.getMessage();
         }
 

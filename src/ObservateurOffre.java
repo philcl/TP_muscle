@@ -8,10 +8,8 @@ public class ObservateurOffre  extends Superviseur{
     @Override
     public void notify(Object o) {
         Offre offre = (Offre)o;
-        ArrayList<? extends Produit> sesProduits = offre.getSesProduits();
+        Produit p = offre.getSesProduits().get(offre.getSesProduits().size()-1);
 
-        for (Produit p: sesProduits) {
-            p.sesOffres.add(offre);
-        }
+        p.sesOffres.add(offre);
     }
 }
