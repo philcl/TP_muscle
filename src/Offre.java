@@ -5,7 +5,6 @@ import java.util.ArrayList;
  */
 public class Offre {
 
-    //todo identifiant plus utilise, a voir si il est utile
     private static int identifiantCompteur = 0;
     private double taux;
     private ArrayList<Produit> sesProduits;

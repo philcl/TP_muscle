@@ -53,6 +53,19 @@ public class Client {
         }
     }
 
+    public void ajoutPointsFidelite(int nombreDePoints){
+        int nbPts = nombreDePoints;
+        while (nbPts > 0){
+            for (CarteDeFidelite cf : sesCartes){
+                nbPts = cf.ajouterDesPoints(nbPts);
+                if(nbPts == 0) break;
+            }
+            if(nbPts>0){ //toutes les cartes sont pleines
+                sesCartes.add(new CarteDeFidelite());
+            }
+        }
+    }
+
     public void changerMotDePasse(String ancienMotDePasse, String nouveauMotDePasse){
         if(this.motDePasse.equals(ancienMotDePasse)){
             this.motDePasse = nouveauMotDePasse;

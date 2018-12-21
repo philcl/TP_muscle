@@ -16,6 +16,12 @@ public class Panier {
         return listeDesProduits;
     }
 
+    private void retraitDesOffres(HashMap<Integer, Offre> hm, ArrayList<Offre> ar){
+        for(Offre of : ar){
+            hm.remove(of.getIdentifiant(), of);
+        }
+    }
+
     //todo points fidelite
     /**
      * Calcule le prix total du {@link Panier}.
@@ -23,9 +29,11 @@ public class Panier {
      */
     public double calculDuPrix(Client client){
         double prix = 0;
-        HashMap<Double, Offre> listeDesOffresUnitaires = new HashMap<>();
-        HashMap<Double, Offre> listeDesPacks = new HashMap<>();
-        HashMap<Double, Offre> offresUnitairesRejetees = new HashMap<>();
+        HashMap<Integer, Offre> listeDesOffresUnitaires = new HashMap<>();
+        HashMap<Integer, Offre> listeDesPacks = new HashMap<>();
+        HashMap<Integer, Offre> offresUnitairesRejetees = new HashMap<>();
+        ArrayList<Offre> offresTMP = new ArrayList<>();
+        ArrayList<Offre> offresTMP2 = new ArrayList<>();
 
         boolean loop = true;
         boolean packOverlap = false;
@@ -37,10 +45,10 @@ public class Panier {
                 for (Offre offre : produit.getOffres()) {
                     if(offre.getSesProduits().size() == 1) {
                         System.out.println(offre.getTaux() + "son Taux");
-                        listeDesOffresUnitaires.put(offre.argentGagne(), offre);
+                        listeDesOffresUnitaires.put(offre.getIdentifiant(), offre);
                     }
                     else if (offre.getSesProduits().size() > 1){
-                        listeDesPacks.put(offre.argentGagne(), offre);
+                        listeDesPacks.put(offre.getIdentifiant(), offre);
                     }
                 }
             }
@@ -51,10 +59,14 @@ public class Panier {
             for (Offre offre : listeDesPacks.values()){
                 for (Produit produit1 : offre.getSesProduits()){
                     if (!listeDesProduits.contains(produit1)){
-                        listeDesPacks.remove(offre.argentGagne(), offre);
+                        //on ne peut pas retirer les offres de la collection si on itere sur celle ci, on cree donc une liste tampon
+                        offresTMP.add(offre);
                     }
                 }
             }
+            //on retire les offres incorrectes a la fin de l'iteration
+            retraitDesOffres(listeDesPacks, offresTMP);
+            offresTMP.clear();
         }
 
         //comparaison des offres unitaires sur un même produit
@@ -64,14 +76,16 @@ public class Panier {
                 if (offre1.getSesProduits().equals(offre2.getSesProduits())){
                     //on supprime la moins avantageuse
                     if (offre1.argentGagne() <= offre2.argentGagne()){
-                        listeDesOffresUnitaires.remove(offre1.argentGagne(), offre1);
+                        offresTMP.add(offre1);
                     }
                     else{
-                        listeDesOffresUnitaires.remove(offre2.argentGagne(), offre2);
+                        offresTMP.add(offre2);
                     }
                 }
             }
         }
+        retraitDesOffres(listeDesOffresUnitaires, offresTMP);
+        offresTMP.clear();
 
         do {
             loop = false;
@@ -81,15 +95,19 @@ public class Panier {
                     if (offre1.getSesProduits().contains(offre2.getSesProduits().get(0))) {
                         //on supprime la moins avantageuse
                         if (offre1.argentGagne() <= offre2.argentGagne()) {
-                            listeDesPacks.remove(offre1.argentGagne(), offre1);
+                            offresTMP.add(offre1);
                         } else {
                             //on garde en memoire l'offre unitaire rejetee dans le cas ou le pack soit rejete plus tard
-                            offresUnitairesRejetees.put(offre2.argentGagne(), offre2);
-                            listeDesOffresUnitaires.remove(offre2.argentGagne(), offre2);
+                            offresUnitairesRejetees.put(offre2.getIdentifiant(), offre2);
+                            offresTMP2.add(offre2);
                         }
                     }
                 }
             }
+            retraitDesOffres(listeDesPacks, offresTMP);
+            retraitDesOffres(listeDesOffresUnitaires, offresTMP2);
+            offresTMP.clear();
+            offresTMP2.clear();
 
             //comparaison des packs
             for (Offre offre1 : listeDesPacks.values()){
@@ -109,20 +127,24 @@ public class Panier {
                         if (offre1.argentGagne() <= offre2.argentGagne()){
                             for(Offre offre : offresUnitairesRejetees.values()){
                                 if (offre1.getSesProduits().contains(offre.getSesProduits().get(0))){
-                                    listeDesOffresUnitaires.put(offre.argentGagne(), offre);
-                                    offresUnitairesRejetees.remove(offre.argentGagne(), offre);
+                                    listeDesOffresUnitaires.put(offre.getIdentifiant(), offre);
+                                    offresTMP.add(offre);
                                 }
                             }
-                            listeDesPacks.remove(offre1.argentGagne(), offre1);
+                            retraitDesOffres(offresUnitairesRejetees, offresTMP);
+                            offresTMP.clear();
+                            listeDesPacks.remove(offre1.getIdentifiant(), offre1);
                         }
                         else {
                             for(Offre offre : offresUnitairesRejetees.values()){
                                 if (offre2.getSesProduits().contains(offre.getSesProduits().get(0))){
-                                    listeDesOffresUnitaires.put(offre.argentGagne(), offre);
-                                    offresUnitairesRejetees.remove(offre.argentGagne(), offre);
+                                    listeDesOffresUnitaires.put(offre.getIdentifiant(), offre);
+                                    offresTMP.add(offre);
                                 }
                             }
-                            listeDesPacks.remove(offre2.argentGagne(), offre2);
+                            retraitDesOffres(offresUnitairesRejetees, offresTMP);
+                            offresTMP.clear();
+                            listeDesPacks.remove(offre2.getIdentifiant(), offre2);
                         }
                     }
                     packOverlap = false;
@@ -134,17 +156,19 @@ public class Panier {
         //prix sans reductions
         for (Produit produit : listeDesProduits){
             prix += produit.getPrix();
-            //todo ajout des points sur les cartes de fidelite si adherent
+            if(client.getCategorie().equals(Adherent.getInstance())){
+                client.ajoutPointsFidelite(produit.getPointsFidelite());
+            }
         }
 
         //prix apres reductions unitaires
-        for(Double d : listeDesOffresUnitaires.keySet()){
-            prix -= d;
+        for(Offre of : listeDesOffresUnitaires.values()){
+            prix -= of.argentGagne();
         }
 
         //prix apres reductions de packs
-        for(Double d : listeDesPacks.keySet()){
-            prix -= d;
+        for(Offre of : listeDesPacks.values()){
+            prix -= of.argentGagne();
         }
 
         //calcul du rabais en fonction de la catégorie.

@@ -24,9 +24,23 @@ public class CarteDeFidelite {
         return rabais;
     }
 
-    public void ajouterDesPoints(int nombreDePoints){
-        this.nombreDePoints += nombreDePoints;
-        this.calculRabais();
+    public int ajouterDesPoints(int nombreDePoints){
+        if(this.nombreDePoints < 100) {
+            int nombreManquant = 100-this.nombreDePoints;
+            if(nombreDePoints <= nombreManquant) {
+                this.nombreDePoints += nombreDePoints;
+                this.calculRabais();
+                return 0;
+            }
+            else {
+                this.nombreDePoints = 100;
+                this.calculRabais();
+                return nombreDePoints-nombreManquant;
+            }
+        }
+        else {
+            return nombreDePoints;
+        }
     }
 
     public void reinitialisePoints(){
