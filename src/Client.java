@@ -44,7 +44,7 @@ public class Client {
     }
 
     public void ajouterUneCarte(CarteDeFidelite carteDeFidelite){
-        //todo(mettre une Exception) et redef equals dans categorie
+        //todo mettre une exception
         if (categorie == Adherent.getInstance()){
             sesCartes.add(carteDeFidelite);
         }

@@ -22,9 +22,8 @@ public class Panier {
         }
     }
 
-    //todo points fidelite
     /**
-     * Calcule le prix total du {@link Panier}.
+ * Calcule le prix total du {@link Panier} et ajout des points de fidelite dans la {@link CarteDeFidelite} si le client est identifie comme Adherent.
      * @return prix du panier.
      */
     public double calculDuPrix(Client client){
