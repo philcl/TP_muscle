@@ -170,8 +170,16 @@ public class Panier {
             prix -= of.argentGagne();
         }
 
+        prix = prix - prix * client.getCategorie().getRabais(client);
+
+        //ajpout des points de fidelite
+        for (Produit produit : listeDesProduits){
+            if(client.getCategorie().equals(Adherent.getInstance())){
+                client.ajoutPointsFidelite(produit.getPointsFidelite());
+            }
+        }
         //calcul du rabais en fonction de la catégorie.
-        return prix - prix * client.getCategorie().getRabais(client);
+        return prix;
     }
 
     public void ajouterListeAuPanier(ArrayList<Produit> listeDeProduits){
