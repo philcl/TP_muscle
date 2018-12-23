@@ -51,6 +51,7 @@ public class Offre {
             for(Produit produit : sesProduits){
                 res += produit.getPrix() * this.taux;
             }
+            System.out.println("res = " + res);
             return res;
         }
         else return 0;
