@@ -68,9 +68,9 @@ public class Test {
         Client3base.getPanier().ajouterAuPanier(CD1);
         Client3base.getPanier().ajouterAuPanier(CD2);
         Client3base.getPanier().ajouterAuPanier(DVD2);
-        //Client3base.getPanier().ajouterAuPanier(DVD1);
-        //Client3base.getPanier().ajouterAuPanier(Livre1);
-        //Client3base.getPanier().ajouterAuPanier(DVD3);
+        Client3base.getPanier().ajouterAuPanier(DVD1);
+        Client3base.getPanier().ajouterAuPanier(Livre1);
+        Client3base.getPanier().ajouterAuPanier(DVD3);
         System.out.println("Membre du personnel");
         System.out.println(Client3base.payer());
 

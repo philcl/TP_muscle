@@ -133,7 +133,7 @@ public class Panier {
                             }
                             retraitDesOffres(offresUnitairesRejetees, offresTMP);
                             offresTMP.clear();
-                            listeDesPacks.remove(offre1.getIdentifiant(), offre1);
+                            offresTMP2.add(offre1);
                         }
                         else {
                             for(Offre offre : offresUnitairesRejetees.values()){
@@ -144,12 +144,14 @@ public class Panier {
                             }
                             retraitDesOffres(offresUnitairesRejetees, offresTMP);
                             offresTMP.clear();
-                            listeDesPacks.remove(offre2.getIdentifiant(), offre2);
+                            offresTMP2.add(offre2);
                         }
                     }
                     packOverlap = false;
                 }
             }
+            retraitDesOffres(listeDesPacks, offresTMP2);
+            offresTMP2.clear();
         }while (loop);
 
         //calcul du prix final sans le rabais de categorie
