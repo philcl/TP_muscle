@@ -53,6 +53,7 @@ public class Panier {
             }
         }
 
+
         //retrait des offres incompletes
         if (!listeDesPacks.isEmpty()){
             for (Offre offre : listeDesPacks.values()){
@@ -75,7 +76,7 @@ public class Panier {
         for(Offre offre1 : listeDesOffresUnitaires.values()){
             for (Offre offre2 : listeDesOffresUnitaires.values()){
                 //deux offres concernant le meme produit
-                if (offre1.getSesProduits().equals(offre2.getSesProduits())){
+                if (!offre1.getSesProduits().equals(offre2.getSesProduits())){
                     //on supprime la moins avantageuse
                     if (offre1.argentGagne() <= offre2.argentGagne()){
                         offresTMP.add(offre1);
@@ -169,6 +170,7 @@ public class Panier {
         }
 
         System.out.println("le prix avant rabais = " + prix);
+
 
         //prix apres reductions unitaires
         for(Offre of : listeDesOffresUnitaires.values()){
