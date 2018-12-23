@@ -69,9 +69,6 @@ public class Panier {
             offresTMP.clear();
         }
 
-        System.out.println("hello 1");
-
-
         //comparaison des offres unitaires sur un même produit
         for(Offre offre1 : listeDesOffresUnitaires.values()){
             for (Offre offre2 : listeDesOffresUnitaires.values()){
@@ -89,9 +86,6 @@ public class Panier {
         }
         retraitDesOffres(listeDesOffresUnitaires, offresTMP);
         offresTMP.clear();
-
-
-        System.out.println("hello");
 
         do {
             loop = false;
@@ -158,19 +152,11 @@ public class Panier {
             }
         }while (loop);
 
-        System.out.println("Je suis avant le calcul du prix");
-
         //calcul du prix final sans le rabais de categorie
         //prix sans reductions
         for (Produit produit : listeDesProduits){
             prix += produit.getPrix();
-            if(client.getCategorie().equals(Adherent.getInstance())){
-                client.ajoutPointsFidelite(produit.getPointsFidelite());
-            }
         }
-
-        System.out.println("le prix avant rabais = " + prix);
-
 
         //prix apres reductions unitaires
         for(Offre of : listeDesOffresUnitaires.values()){
@@ -182,13 +168,8 @@ public class Panier {
             prix -= of.argentGagne();
         }
 
-        System.out.println("le prix après rabais offre = " + prix);
-
-        System.out.println();
-
+        //calcul du rabais en fonction de la catégorie.
         prix = prix - prix * client.getCategorie().getRabais(client);
-
-        System.out.println("le prix avant carte fid = " + prix);
 
         //ajout des points de fidelite
         for (Produit produit : listeDesProduits){
@@ -196,7 +177,6 @@ public class Panier {
                 client.ajoutPointsFidelite(produit.getPointsFidelite());
             }
         }
-        //calcul du rabais en fonction de la catégorie.
         return prix;
     }
 

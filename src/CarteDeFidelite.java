@@ -10,7 +10,7 @@ public class CarteDeFidelite {
     public CarteDeFidelite(){
         this.identifiant = ++ identifiantCompteur;
         this.nombreDePoints = 0;
-        this.rabais = 0;
+        this.rabais = 0.00;
     }
 
     public int getNombreDePoints(){
@@ -50,7 +50,7 @@ public class CarteDeFidelite {
 
     private void calculRabais(){
         if(nombreDePoints < 20){
-            rabais = 0;
+            rabais = 0.00;
         }
         if(20 <= nombreDePoints && nombreDePoints < 40){
             rabais = 0.01;
