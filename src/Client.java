@@ -92,10 +92,16 @@ public class Client {
         categorie = ClientSimple.getInstance();
     }
 
-    public double payer(){
-        double res = panier.calculDuPrix(this);
-        panier.getListeDesProduits().clear();
-        return res;
+    public double payer() {
+        try {
+            double res = panier.calculDuPrix(this);
+            panier.getListeDesProduits().clear();
+            return res;
+        }
+        catch(PrixException e) {
+            System.err.println("Le prix est négatif");
+        }
+        return 0;
     }
 
 }

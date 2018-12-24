@@ -26,7 +26,7 @@ public class Panier {
  * Calcule le prix total du {@link Panier} et ajout des points de fidelite dans la {@link CarteDeFidelite} si le client est identifie comme Adherent.
      * @return prix du panier.
      */
-    public double calculDuPrix(Client client){
+    public double calculDuPrix(Client client) throws PrixException{
         double prix = 0;
         HashMap<Integer, Offre> listeDesOffresUnitaires = new HashMap<>();
         HashMap<Integer, Offre> listeDesPacks = new HashMap<>();
@@ -177,7 +177,10 @@ public class Panier {
                 client.ajoutPointsFidelite(produit.getPointsFidelite());
             }
         }
-        return prix;
+        if(prix < 0)
+            throw new PrixException();
+        else
+            return prix;
     }
 
     public void ajouterListeAuPanier(ArrayList<Produit> listeDeProduits){
