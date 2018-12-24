@@ -40,10 +40,8 @@ public class Panier {
         //remplissage de la liste des offres
         for (Produit produit : listeDesProduits){
             if (!produit.getOffres().isEmpty()) {
-                System.out.println("offre non empty");
                 for (Offre offre : produit.getOffres()) {
                     if(offre.getSesProduits().size() == 1) {
-                        System.out.println(offre.getTaux() + "son Taux");
                         listeDesOffresUnitaires.put(offre.getIdentifiant(), offre);
                     }
                     else if (offre.getSesProduits().size() > 1){
