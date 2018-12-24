@@ -9,18 +9,20 @@ public class Client {
     private Categorie categorie;
     private Panier panier;
     private ArrayList<CarteDeFidelite> sesCartes;
+    private ObservateurClient s;
 
     public Client (){
-        this("","","", ClientSimple.getInstance());
+        this("","","", ClientSimple.getInstance(), new ObservateurClient());
     }
 
-    public Client (String nom, String mail, String motDePasse, Categorie categorie){
+    public Client (String nom, String mail, String motDePasse, Categorie categorie, ObservateurClient sup){
         this.nom = nom;
         this.mail = mail;
         this.motDePasse = motDePasse;
         this.categorie = categorie;
         this.panier = new Panier();
         this.sesCartes = new ArrayList<>();
+        this.s = sup;
     }
 
     public String getNom() {
@@ -95,6 +97,7 @@ public class Client {
     public double payer() {
         try {
             double res = panier.calculDuPrix(this);
+            s.notify(this);
             panier.getListeDesProduits().clear();
             return res;
         }

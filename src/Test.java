@@ -33,9 +33,9 @@ public class Test {
 
         BaseDeDonnee bd = BaseDeDonnee.getInstance();
 
-        Client Client1 = new Client("Felix", "felix.jacquemin@u-psud.fr", "azerty", Adherent.getInstance());
-        Client Client2 = new Client("Philippe", "philippe.claude@u-psud.fr", "azerty", ClientSimple.getInstance());
-        Client Client3 = new Client("Maissa", "maissa.khamis@u-psud.fr", "azerty", MembreDuPersonnel.getInstance());
+        Client Client1 = new Client("Felix", "felix.jacquemin@u-psud.fr", "azerty", Adherent.getInstance(), new ObservateurClient());
+        Client Client2 = new Client("Philippe", "philippe.claude@u-psud.fr", "azerty", ClientSimple.getInstance(), new ObservateurClient());
+        Client Client3 = new Client("Maissa", "maissa.khamis@u-psud.fr", "azerty", MembreDuPersonnel.getInstance(), new ObservateurClient());
 
         Client Client1base = new Client();
         Client Client2base = new Client();
